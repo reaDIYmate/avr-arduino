@@ -1,4 +1,23 @@
-# See: http://code.google.com/p/arduino/wiki/Platforms
+##############################################################
+
+readiymate.name=reaDIYmate board (ATmega1280) v1.5
+
+readiymate.upload.protocol=arduino
+readiymate.upload.maximum_size=126976
+readiymate.upload.speed=57600
+
+readiymate.bootloader.low_fuses=0xFF
+readiymate.bootloader.high_fuses=0xDA
+readiymate.bootloader.extended_fuses=0xF5
+readiymate.bootloader.path=reaDIYboot
+readiymate.bootloader.file=reaDIYboot.hex
+readiymate.bootloader.unlock_bits=0x3F
+readiymate.bootloader.lock_bits=0x0F
+
+readiymate.build.mcu=atmega1280
+readiymate.build.f_cpu=16000000L
+readiymate.build.core=readiymate
+readiymate.build.variant=readiymate
 
 ##############################################################
 
