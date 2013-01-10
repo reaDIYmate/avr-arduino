@@ -30,7 +30,7 @@ public:
     HardwareSerial(ring_buffer *rx_buffer, volatile uint8_t *ubrrh,
         volatile uint8_t *ubrrl, volatile uint8_t *ucsra,
         volatile uint8_t *ucsrb, volatile uint8_t *udr, uint8_t rxen,
-        uint8_t txen, uint8_t rxcie, uint8_t u2x);
+        uint8_t txen, uint8_t rxcie, uint8_t udre, uint8_t u2x);
         int available(void);
         void begin(unsigned long);
         void clear();
@@ -51,6 +51,7 @@ private:
     uint8_t _rxen;
     uint8_t _txen;
     uint8_t _rxcie;
+    uint8_t _udre;
     uint8_t _u2x;
 };
 //------------------------------------------------------------------------------

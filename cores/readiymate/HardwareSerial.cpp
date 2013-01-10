@@ -61,7 +61,7 @@ ISR(USART1_RX_vect) {
 HardwareSerial::HardwareSerial(ring_buffer *rx_buffer0, volatile uint8_t *ubrrh,
     volatile uint8_t *ubrrl, volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
     volatile uint8_t *udr, uint8_t rxen, uint8_t txen, uint8_t rxcie,
-    uint8_t u2x) {
+    uint8_t udre, uint8_t u2x) {
     _rx_buffer = rx_buffer0;
     _ubrrh = ubrrh;
     _ubrrl = ubrrl;
@@ -71,6 +71,7 @@ HardwareSerial::HardwareSerial(ring_buffer *rx_buffer0, volatile uint8_t *ubrrh,
     _rxen = rxen;
     _txen = txen;
     _rxcie = rxcie;
+    _udre = udre;
     _u2x = u2x;
 }
 //------------------------------------------------------------------------------
@@ -148,12 +149,12 @@ int HardwareSerial::read() {
 }
 //------------------------------------------------------------------------------
 size_t HardwareSerial::write(uint8_t ch) {
-    while (!(*_ucsra & (1 << UDRE1)));
+    while (!(*_ucsra & (1 << _udre)));
     *_udr = ch;
     return 1;
 }
 //------------------------------------------------------------------------------
 HardwareSerial Serial(&rx_buffer0, &UBRR0H, &UBRR0L, &UCSR0A, &UCSR0B, &UDR0,
-    RXEN0, TXEN0, RXCIE0, U2X0);
+    RXEN0, TXEN0, RXCIE0, UDRE0, U2X0);
 HardwareSerial Serial1(&rx_buffer1, &UBRR1H, &UBRR1L, &UCSR1A, &UCSR1B, &UDR1,
-    RXEN1, TXEN1, RXCIE1, U2X1);
+    RXEN1, TXEN1, RXCIE1, UDRE1, U2X1);
